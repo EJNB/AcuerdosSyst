@@ -1,0 +1,98 @@
+<?php
+
+namespace Acuerdos\GestionBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Responsable
+ *
+ * @ORM\Table(name="responsable")
+ * @ORM\Entity
+ */
+class Responsable
+{
+    /**
+     * @var \Persona
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Persona")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID", referencedColumnName="ID")
+     * })
+     */
+    private $id;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Acuerdo", mappedBy="idResponsable")
+     */
+    private $Acuerdos;
+
+
+
+    /**
+     * Set id
+     *
+     * @param \Acuerdos\GestionBundle\Entity\Persona $id
+     * @return Responsable
+     */
+    public function setId(\Acuerdos\GestionBundle\Entity\Persona $id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return \Acuerdos\GestionBundle\Entity\Persona 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->Acuerdos = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Add Acuerdos
+     *
+     * @param \Acuerdos\GestionBundle\Entity\Acuerdo $acuerdos
+     * @return Responsable
+     */
+    public function addAcuerdo(\Acuerdos\GestionBundle\Entity\Acuerdo $acuerdos)
+    {
+        $this->Acuerdos[] = $acuerdos;
+
+        return $this;
+    }
+
+    /**
+     * Remove Acuerdos
+     *
+     * @param \Acuerdos\GestionBundle\Entity\Acuerdo $acuerdos
+     */
+    public function removeAcuerdo(\Acuerdos\GestionBundle\Entity\Acuerdo $acuerdos)
+    {
+        $this->Acuerdos->removeElement($acuerdos);
+    }
+
+    /**
+     * Get Acuerdos
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAcuerdos()
+    {
+        return $this->Acuerdos;
+    }
+}

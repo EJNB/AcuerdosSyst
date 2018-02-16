@@ -1,0 +1,11 @@
+acuerdos_gestion_acuerdo:
+    resource: "@AcuerdosGestionBundle/Resources/config/routing/acuerdo.yml"
+    prefix:   /acuerdo
+
+acuerdos_gestion_persona:
+    resource: "@AcuerdosGestionBundle/Resources/config/routing/persona.yml"
+    prefix:   /persona
+
+acuerdos_gestion_procedencia:
+    resource: "@AcuerdosGestionBundle/Resources/config/routing/procedencia.yml"
+    prefix:   /procedencia

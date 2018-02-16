@@ -1,0 +1,19 @@
+{% for flashMessage in app.session.flashbag.get('error_changepass') %}
+    <div class="modal fade bs-example-modal-sm" id="modal-alert-changepass" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                {#<div class="modal-header">#}
+                {#</div>#}
+                <div class="modal-body">
+                    <div class="alert alert-danger fade in">
+                        {#<button type="button" class="close" data-dismiss="alert"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>#}
+                        <span class="glyphicon glyphicon-warning-sign"></span>{{ flashMessage }}
+                    </div>
+                </div>
+                {#<div class="modal-footer">#}
+                {#<button type="button" class="btn btn-default" data-dismiss="modal">Cerrar</button>#}
+                {#</div>#}
+            </div>
+        </div>
+    </div>
+{% endfor %}

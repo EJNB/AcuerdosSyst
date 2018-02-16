@@ -1,0 +1,7 @@
+parameters:
+#    acuerdos_seguridad.example.class: Acuerdos\SeguridadBundle\Example
+
+services:
+#    acuerdos_seguridad.example:
+#        class: %acuerdos_seguridad.example.class%
+#        arguments: [@service_id, "plain_value", %parameter%]

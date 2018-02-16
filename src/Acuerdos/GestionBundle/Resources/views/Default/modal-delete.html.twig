@@ -1,0 +1,46 @@
+<div class="modal fade" id="modal-delete" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Confirmación</h4>
+            </div>
+            <div class="modal-body">
+                ¿Está seguro de eliminar el registro seleccionado?
+                <p id="text-descripcion-popup-eliminar"></p>
+            </div>
+            <div class="modal-footer">
+                <a id="link-popup-eliminar" class="btn btn-danger" href="javascript:void(0)">Si</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-add-person" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Agregar persona:</h4>
+            </div>
+            <div class="modal-body">
+                <form action="" id="form-persona-modal" method="post">
+                    <input type="text" placeholder="Descripcion" required="required" name="descripcion" id="popup-persona-descripcion">
+                    <input type="text" placeholder="Cargo" required="required" name="cargo" id="popup-persona-cargo">
+                    <input type="email" placeholder="Email"name="email" id="popup-persona-email">
+                    <input type="submit" hidden="true" id="submit-persona">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a id="link-popup-add-persona" class="btn btn-danger" data-url="{{ path('persona_create_from_acuerdo') }}" href="javascript:void(0);">Si</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+    AssignAjaxEvents();
+</script>
+

@@ -1,0 +1,29 @@
+procedencia:
+    path:     /
+    defaults: { _controller: "AcuerdosGestionBundle:Procedencia:index" }
+
+procedencia_show:
+    path:     /{id}/show
+    defaults: { _controller: "AcuerdosGestionBundle:Procedencia:show" }
+
+procedencia_new:
+    path:     /new
+    defaults: { _controller: "AcuerdosGestionBundle:Procedencia:new" }
+
+procedencia_create:
+    path:     /create
+    defaults: { _controller: "AcuerdosGestionBundle:Procedencia:create" }
+    requirements: { _method: post }
+
+procedencia_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AcuerdosGestionBundle:Procedencia:edit" }
+
+procedencia_update:
+    path:     /{id}/update
+    defaults: { _controller: "AcuerdosGestionBundle:Procedencia:update" }
+    requirements: { _method: post|put }
+
+procedencia_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AcuerdosGestionBundle:Procedencia:delete" }

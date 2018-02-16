@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+</head>
+<body>
+
+<div>
+        <h1 >
+            Sistema de acuerdos del Grupo Cubanacan
+        </h1>
+    </div>
+    <div>
+        <h2 >
+            Procedencia: {{ procedencia.procedencia }}
+        </h2>
+    </div>
+
+
+    <div>
+        <table border="1">
+            <thead>
+            <tr>
+                <th style="width: 4%">Id</th>
+                <th style="width: 17%">Descripci&oacute;n</th>
+                <th style="width: 9%">Fecha C. Indicada</th>
+                <th style="width: 9%">Fecha C. Real</th>
+                <th style="width: 12%">Seguimiento</th>
+                <th style="width: 11%">Observaciones</th>
+                <th style="width: 5%">Estado</th>
+                <th style="width: 11%">Autor</th>
+                <th style="width: 11%">Responsables</th>
+                <th style="width: 11%">Ejecutores</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td>{{ entity.acuerdo.idAcuerdo }}</a></td>
+                    <td>{{ entity.acuerdo.descripcion }}</td>
+                    <td>{% if entity.acuerdo.fechaCumplimientoIndicada %}{{ entity.acuerdo.fechaCumplimientoIndicada|date('Y-m-d') }}{% endif %}</td>
+                    <td>{% if entity.acuerdo.fechaCumplimientoReal %}{{ entity.acuerdo.fechaCumplimientoReal|date('Y-m-d') }}{% endif %}</td>
+                    <td>{{ entity.acuerdo.accionesSeguimiento }}</td>
+                    <td>{{ entity.acuerdo.observaciones }}</td>
+                    <td>{{ entity.acuerdo.estado }}</td>
+                    <td>
+                        <table>
+                            {% for persona in entity.personas %}
+                                {% if persona.tipo == 'Autor' %}
+                                    <tr><td>{{ persona.idPersona.descripcion }}</td></tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            {% for persona in entity.personas %}
+                                {% if persona.tipo == 'Responsable' %}
+                                    <tr><td>{{ persona.idPersona.descripcion }}</td></tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            {% for persona in entity.personas %}
+                                {% if persona.tipo == 'Ejecutor' %}
+                                    <tr><td>{{ persona.idPersona.descripcion }}</td></tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+</html>
+

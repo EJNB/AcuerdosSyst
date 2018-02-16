@@ -1,0 +1,19 @@
+acuerdos_seguridad:
+    resource: "@AcuerdosSeguridadBundle/Resources/config/routing.yml"
+    prefix:   /Seguridad
+
+acuerdos_reportes:
+    resource: "@AcuerdosReportesBundle/Resources/config/routing.yml"
+    prefix:   /Reportes
+
+acuerdos_gestion:
+    resource: "@AcuerdosGestionBundle/Resources/config/routing.yml"
+    prefix:   /Gestion
+
+acuerdos_homepage:
+    path:     /
+    defaults: { _controller: AcuerdosReportesBundle:Acuerdos:seleccionProcedencias }
+
+app:
+    resource: '@AppBundle/Controller/'
+    type: annotation

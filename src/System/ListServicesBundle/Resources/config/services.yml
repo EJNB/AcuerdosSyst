@@ -1,0 +1,15 @@
+parameters:
+    records_per_page: 10
+
+services:
+    orderbyservice:
+        class: System\ListServicesBundle\Controller\SessionOrderByService
+        arguments: [@prefixedsessionservice]
+
+    filterservice:
+        class: System\ListServicesBundle\Controller\SessionFilterService
+        arguments: [@prefixedsessionservice]
+
+    pagerservice:
+        class: System\ListServicesBundle\Controller\SessionPagerService
+        arguments: [@prefixedsessionservice, %records_per_page%]

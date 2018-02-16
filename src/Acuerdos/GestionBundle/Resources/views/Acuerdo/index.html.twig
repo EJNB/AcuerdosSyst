@@ -1,0 +1,114 @@
+{% extends '::layout-admin.html.twig' %}
+
+{% block content %}
+    {% include "AcuerdosGestionBundle:Default:flash-message.html.twig" %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Gestionar acuerdos</h3>
+        </div>
+        <div class="panel-body">
+
+        <div class="admin-list-actions autosize">
+            {% include "AcuerdosGestionBundle:Default:link-add.html.twig" with { url:'acuerdo_new' } %}
+            {% include "AcuerdosGestionBundle:Default:admin-search-form.html.twig" with { url:'acuerdo' } %}
+        </div>
+        <table class="table table-striped table-hover table-condensed" id="tabla-acuerdos">
+            <thead>
+                <tr>
+                    <th style="width: 4%">
+                        {#Id#}
+                        {% include "AcuerdosGestionBundle:Default:order-link.html.twig" with { url:'acuerdo', column_name:'id', caption:'Id' } %}
+                    </th>
+                    <th style="width: 20%">
+                        Descripci&oacute;n
+                    </th>
+                    <th style="width: 15%">
+                        {% include "AcuerdosGestionBundle:Default:order-link.html.twig" with { url:'acuerdo', column_name:'fechaCumplimientoIndicada', caption:'Cumplimiento Indicado' } %}
+                    </th>
+                    <th style="width: 13%">
+                        Seguimiento
+                    </th>
+                    <th style="width: 5%">
+                        {% include "AcuerdosGestionBundle:Default:order-link.html.twig" with { url:'acuerdo', column_name:'estado', caption:'Estado' } %}
+                    </th>
+                    <th style="width: 11.5%">
+                        Autor
+                    </th>
+                    <th style="width: 11.5%">
+                        Responsables</th>
+                    <th style="width: 11.5%">Ejecutores
+                    </th>
+                    <th style="width: 8%">
+                        Acciones
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+
+                    <td>{{ entity.acuerdo.idAcuerdo }}</a></td>
+                    <td>{{ entity.acuerdo.descripcion }}</td>
+                    <td>{% if entity.acuerdo.fechaCumplimientoIndicada %}{{ entity.acuerdo.fechaCumplimientoIndicada|date('Y-m-d') }}{% endif %}</td>
+                    <td>{{ entity.acuerdo.accionesSeguimiento}}</td>
+                    <td>{{ entity.acuerdo.estado }}</td>
+                    <td>
+                        <table>
+                            {% for persona in entity.personas %}
+                                {% if persona.tipo == 'Autor' %}
+                                    <tr><td>{{ persona.idPersona.descripcion }}</td></tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            {% for persona in entity.personas %}
+                                {% if persona.tipo == 'Responsable' %}
+                                    <tr><td>{{ persona.idPersona.descripcion }}</td></tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </td>
+                    <td>
+                        <table>
+                            {% for persona in entity.personas %}
+                                {% if persona.tipo == 'Ejecutor' %}
+                                    <tr><td>{{ persona.idPersona.descripcion }}</td></tr>
+                                {% endif %}
+                            {% endfor %}
+                        </table>
+                    </td>
+
+                    </td>
+                    <td>
+                        <a href="{{ path('acuerdo_show',  { 'id': entity.acuerdo.id }) }}" ><span class="glyphicon glyphicon-eye-open"></span></a>
+                        <a href="{{ path('acuerdo_edit',  { 'id': entity.acuerdo.id }) }}"><span class="glyphicon glyphicon-pencil"></span></a>
+                        <a class="link-eliminar" href="javascript:void(0);"
+                           data-url = "{{ path('acuerdo_delete', { 'id': entity.acuerdo.id }) }}"
+                           data-descripcion="Acuerdo: {{ entity.acuerdo.idAcuerdo }}"
+                           data-toggle="modal" data-target="#modal-delete">
+                            <span class="glyphicon glyphicon-trash"></span>
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="9">
+                    {% include "AcuerdosGestionBundle:Default:paginator.html.twig" with { url:'acuerdo' } %}
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+
+        <div class="list-actions">
+            {% include "AcuerdosGestionBundle:Default:link-add.html.twig" with { url:'acuerdo_new' } %}
+        </div>
+        </div>
+    </div>
+
+    {% include "AcuerdosGestionBundle:Default:modal-delete.html.twig" %}
+{% endblock %}

@@ -1,0 +1,34 @@
+persona:
+    path:     /
+    defaults: { _controller: "AcuerdosGestionBundle:Persona:index" }
+
+persona_new:
+    path:     /new
+    defaults: { _controller: "AcuerdosGestionBundle:Persona:new" }
+
+persona_create:
+    path:     /create
+    defaults: { _controller: "AcuerdosGestionBundle:Persona:create" }
+    requirements: { _method: post }
+
+persona_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AcuerdosGestionBundle:Persona:edit" }
+
+persona_update:
+    path:     /{id}/update
+    defaults: { _controller: "AcuerdosGestionBundle:Persona:update" }
+    requirements: { _method: post|put }
+
+persona_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AcuerdosGestionBundle:Persona:delete" }
+
+persona_create_from_acuerdo:
+    path:     /createfromacuerdo
+    defaults: { _controller: "AcuerdosGestionBundle:Persona:createPersonaFromAcuerdo" }
+#    requirements: { _method: post }
+
+persona_update_lista_from_acuerdo:
+    path:     /actualizarlista
+    defaults: { _controller: "AcuerdosGestionBundle:Persona:updateListaFromAcuerdo" }

@@ -1,0 +1,55 @@
+<div class="modal fade" id="modal-change-pass-admin" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="modal-change-pass">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Cambiar contraseña</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger fade in" hidden="true" id="alert-password-match">
+                    <span class="glyphicon glyphicon-warning-sign"></span>Introduzca la contraseña correctamente
+                </div>
+                <form method="post" id="form-changepass" class="changepass">
+                    <label for="password">Introducir nueva contraseña:</label>
+                    <input type="password" name="password" id="password">
+                    <label for="repeat-password">Repetir contraseña:</label>
+                    <input type="password" name="repeat_password" id="repeat-password">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a id="link-popup-changepass" class="btn btn-primary" href="javascript:void(0)">Aceptar</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-change-pass-user" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="modal-change-pass">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Cambiar contraseña</h4>
+            </div>
+            <div class="modal-body">
+                <div class="alert alert-danger fade in" hidden="true" id="alert-password-match-user">
+                    <span class="glyphicon glyphicon-warning-sign"></span>Introduzca la contraseña correctamente
+                </div>
+                <form method="post" id="form-changepass-user" class="changepass">
+                    <label for="password">Contraseña anterior:</label>
+                    <input type="password" name="previous_password" id="previous_password">
+                    <label for="password">Introducir nueva contraseña:</label>
+                    <input type="password" name="password_user" id="password_user">
+                    <label for="repeat-password">Repetir contraseña:</label>
+                    <input type="password" name="repeat_password_user" id="repeat_password_user">
+                    <input type="hidden" name="ruta" value="{{ app.request.uri }}">
+                    <input type="hidden" name="id" value="{{ app.user.id }}">
+                </form>
+            </div>
+            <div class="modal-footer">
+                <a id="link-popup-changepass-user" class="btn btn-primary" href="javascript:void(0)">Aceptar</a>
+                <button type="button" class="btn btn-default" data-dismiss="modal">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</div>

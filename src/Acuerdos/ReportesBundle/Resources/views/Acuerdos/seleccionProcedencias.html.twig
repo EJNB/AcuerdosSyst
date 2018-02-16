@@ -1,0 +1,54 @@
+{% extends '::layout-admin.html.twig' %}
+
+{% block content %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="glyphicon glyphicon-book"></span>REPORTE POR PROCEDENCIA</div>
+        <div class="panel-body">
+            <div id="lista-proced">
+                <ul class="list-group">
+                    {% for procedencia in procedencias %}
+                        <a style="text-decoration: none" href="{{ path('acuerdos_procedencia', { 'idprocedencia': procedencia.id }) }}">
+                            <li class="list-group-item">
+                                <span class="badge">{{ procedencia.cant }}</span>
+                                <span class="glyphicon glyphicon-bookmark"></span>{{ procedencia.procedencia }}
+                            </li>
+                        </a>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default">
+        <div class="panel-heading"><span class="glyphicon glyphicon-book"></span>REPORTE POR PERSONA</div>
+        <div class="panel-body">
+            <div id="lista-persona">
+                <form method="post" action="{{ path('acuerdos_persona') }}" id="form-ac-pers">
+                    <select id="select-pers" name="select-pers">
+                        <optgroup label="Nombre">Nombre</optgroup>
+                        <option style="display: none" value="" selected="selected">Nombre</option>
+                        {% for persona in personas %}
+                            <option value="{{ persona.id }}">
+                                {{ persona.descripcion }}
+                            </option>
+                        {% endfor %}
+                    </select>
+
+                    <select id="select-rol" name="select-rol">
+                        <optgroup label="Rol">Rol</optgroup>
+                        <option style="display: none" value="all" selected="selected">Rol</option>
+                        <option value="all">Todos</option>
+                        <option value="Autor">Autor</option>
+                        <option value="Responsable">Responsable</option>
+                        <option value="Ejecutor">Ejecutor</option>
+                    </select>
+                    <a href="javascript:void(0);" id="link-ac-pers" class="btn btn-primary btn-sm"><span class="glyphicon glyphicon-search"></span></a>
+                    {#<input type="submit" value="Buscar">#}
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+{% endblock %}

@@ -1,0 +1,7 @@
+parameters:
+#    system_list_services.example.class: System\ListServicesBundle\Example
+
+services:
+    prefixedsessionservice:
+        class: System\SessionServicesBundle\Controller\PrefixedSessionService
+        arguments: [@session]

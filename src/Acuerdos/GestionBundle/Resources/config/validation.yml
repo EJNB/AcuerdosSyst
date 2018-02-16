@@ -1,0 +1,31 @@
+Acuerdos\GestionBundle\Entity\Procedencia:
+    properties:
+        procedencia:
+            - NotBlank: ~
+        prefijo:
+            - NotBlank: ~
+
+
+Acuerdos\GestionBundle\Entity\Persona:
+    properties:
+        cargo:
+            - NotBlank: ~
+        email:
+            - Email:
+                checkMX: true
+
+
+Acuerdos\GestionBundle\Entity\Acuerdos:
+    properties:
+        id_acuerdo:
+            - NotBlank: ~
+        fecha_creacion:
+            - NotBlank: ~
+            - Date: ~
+        descripcion:
+            - NotBlank: ~
+        fecha_cumplimiento_indicada:
+            - NotBlank: ~
+            - Date: ~
+        estado:
+            - NotBlank: ~

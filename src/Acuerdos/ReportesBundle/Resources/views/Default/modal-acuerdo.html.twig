@@ -1,0 +1,97 @@
+<div class="modal fade" id="modal-acuerdo-enviar" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Introducir texto del mensaje</h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+                    <label>Texto a enviar en el mensaje (opcional): </label>
+                    <textarea name="textarea-msg" rows="10" id="textarea-msg" style="width: 100%"></textarea>
+                    <label style="font-size: 10px">Los datos del mensaje se enviarán de manera automatica!</label>
+                    <div class="modal-footer">
+                        <a id="link-popup-send" class="btn btn-info" href="javascript:void(0);">Enviar</a>
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade bs-example-modal-sm" id="modal-acuerdo-enviar-sin-usar" tabindex="-1" role="dialog" aria-labelledby="mySmallModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-sm">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Aviso</h4>
+            </div>
+            <div class="modal-body">
+                Ha seleccionado <span></span> acuerdo(s). Est&aacute; seguro que desea enviar una notificaci&oacute;nes
+                a las personas relacionadas con
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="modal fade" id="modal-fecha-cump-real" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="modal-cump-real">
+        <div class="modal-content" >
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Seleccione fecha:</h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+                <form name="form-fecha-cump-real" id="form-fecha-cump-real" method="post">
+                    <label></label>
+
+                    <div class="container">
+                        <div class="row">
+                            <div class='col-sm-6'>
+                                <div class="form-group">
+                                    <div class='input-group date' id='datetimepicker-add-cump-real'>
+                                        <input type='hidden' class="form-control" id="fecha-cump-real" name="fecha-cump-real"/>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="modal-footer">
+                        <input type="submit" class="btn btn-info" value="Enviar">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">No</button>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="modal-acuerdo-show" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+    <div class="modal-dialog" id="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
+                <h4 class="modal-title" id="myModalLabel">Introducir texto del mensaje</h4>
+            </div>
+            <div class="modal-body" id="modal-body">
+                {#<form name="form-msg" id="form-msg" method="post">#}
+                    <div id="acuerdo-show">
+                        <a id="show-link" href="#"></a>
+                        {#{{ render(controller('AcuerdosGestionBundle:Acuerdo:show', {'id': ID})) }}#}
+                    </div>
+
+                    <div class="modal-footer">
+                        {#<input type="submit" class="btn btn-info" value="Enviar">#}
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Salir</button>
+                    </div>
+                {#</form>#}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,11 @@
+
+    <a href="{{ path( url, { 'column' : column_name } ) }}">
+    {% autoescape false %} {{ caption }} {% endautoescape %}
+    {% if column == column_name %}
+        {% if order == 'ASC' %}
+            <span class="admin-order-arrow glyphicon glyphicon-arrow-down"></span>
+        {% else %}
+            <span class="admin-order-arrow glyphicon glyphicon-arrow-up"></span>
+        {% endif %}
+    {% endif %}
+</a>

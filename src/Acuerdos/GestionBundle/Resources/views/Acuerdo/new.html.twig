@@ -1,0 +1,116 @@
+{% extends '::layout-admin.html.twig' %}
+
+{% block content %}
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Crear acuerdo</h3>
+    </div>
+    <div class="panel-body">
+
+        {{ form_start(form) }}
+
+            <div class="widgets-group-one">
+                {{ form_widget(form) }}
+            </div>
+            <div class="widgets-group-two">
+                <label style="font-weight: bold; color: #000000">Autor</label>
+                <select name="select-autor" id="select-autor">
+                    {% for persona in personas %}
+                        <option value="{{ persona.id }}">{{ persona.descripcion }}</option>
+                    {% endfor %}
+                </select>
+                <div id="widgets-responsables" class="widgets-personas">
+                    <table style="width: 400px">
+                        <thead>
+                            <tr>
+                                <th colspan="3">
+                                    Responsables:
+                                </th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>Asignados:</td>
+                            <td></td>
+                            <td>Disponibles:</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select name="select-responsables-asignados[]" id="select-responsables-asignados" class="select-multiples-personas" size="10" multiple>
+
+                                </select>
+                            </td>
+                            <td>
+                                <div id="ctrl-select">
+                                    <a class="btn glyphicon glyphicon-plus" id="btn-plus-resp" href="javascript:void(0);"></a>
+                                    <a class="btn glyphicon glyphicon-minus" id="btn-minus-resp" href="javascript:void(0);"></a>
+                                </div>
+                            </td>
+                            <td>
+                                <select name="select-responsables-disponibles[]" id="select-responsables-disponibles" class="select-multiples-personas" size="10">
+                                    {% for persona in personas %}
+                                        <option value="{{ persona.id }}">{{ persona.descripcion }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+                <div id="widgets-ejecutores" class="widgets-personas">
+                    <table style="width: 400px">
+                        <thead>
+                            <tr>
+                                <th colspan="3">
+                                    Ejecutores:
+                                </th>
+                            </tr>
+                        </thead>
+                        <tr>
+                            <td>Asignados:</td>
+                            <td></td>
+                            <td>Disponibles:</td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <select name="select-ejecutores-asignados[]" id="select-ejecutores-asignados" class="select-multiples-personas" size="10" multiple>
+
+                                </select>
+                            </td>
+                            <td>
+                                <div id="ctrl-select">
+                                    <a class="btn glyphicon glyphicon-plus" id="btn-plus-ejec" href="javascript:void(0);"></a>
+                                    <a class="btn glyphicon glyphicon-minus" id="btn-minus-ejec" href="javascript:void(0);"></a>
+                                </div>
+                            </td>
+                            <td>
+                                <select name="select-ejecutores-disponibles[]" id="select-ejecutores-disponibles" class="select-multiples-personas" size="10">
+                                    {% for persona in personas %}
+                                        <option value="{{ persona.id }}">{{ persona.descripcion }}</option>
+                                    {% endfor %}
+                                </select>
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+            </div>
+
+        <div class="form-actions">
+            <input type="submit" class="btn btn-primary" value="Aceptar" id="btn-send" style="display: none"/>
+            <a id="btn-enviar" class="btn btn-primary" href="javascript:void(0);">Aceptar</a>
+            <a class="btn btn-default" href="{{ path('acuerdo') }}">Regresar al listado</a>
+            <a style="margin-left: 2.2%" class="btn btn-default"
+               data-toggle="modal" data-target="#modal-add-person"
+               href="javascript:void(0);" id="add-persona-acuerdo">
+                <span class="glyphicon glyphicon-plus-sign"></span>
+                Agregar nueva persona
+            </a>
+            {#<a style="margin-left: 2.2%" class="btn btn-default" target="_blank" href="{{ path('persona_new') }}"><span class="glyphicon glyphicon-plus-sign"></span>Agregar nueva persona</a>#}
+        </div>
+
+        {{ form_end(form) }}
+    </div>
+</div>
+
+{% include "AcuerdosGestionBundle:Default:modal-delete.html.twig" %}
+
+{% endblock %}

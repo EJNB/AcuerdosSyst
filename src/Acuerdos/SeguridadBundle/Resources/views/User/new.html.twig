@@ -1,0 +1,81 @@
+{% extends '::layout-admin.html.twig' %}
+
+{% block content %}
+
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">Crear usuario</h3>
+    </div>
+    <div class="panel-body">
+    {#{{ form(form) }}#}
+        {{ form_start(form) }}
+        <div class="grp-input-two-rows">
+            <div class="grp-input-row-one">
+                <div>
+                    {{ form_label(form.name) }}
+                    {% if form_errors(form.name)!= null %}
+                        <div class="alert alert-danger alert-dismissible alert-cerrar" role="alert" id="form-alert-error" data-dismiss="alert" >
+                            <div style="float: left;"><span class="glyphicon glyphicon-chevron-left"></span></div>
+                            {{ form_errors(form.name) }}
+                        </div>
+                    {% else %}{{ form_errors(form.name) }}{% endif %}
+                    {{ form_widget(form.name) }}
+                </div>
+                <div>
+                    {{ form_label(form.username) }}
+                    {% if form_errors(form.username)!= null %}
+                        <div class="alert alert-danger alert-dismissible alert-cerrar" role="alert" id="form-alert-error" data-dismiss="alert" >
+                            <div style="float: left;"><span class="glyphicon glyphicon-chevron-left"></span></div>
+                            {{ form_errors(form.username) }}
+                        </div>
+                    {% else %}{{ form_errors(form.username) }}{% endif %}
+                    {{ form_widget(form.username) }}
+                </div>
+                <div>
+                    {{ form_label(form.password.first) }}
+                    {% if form_errors(form.password.first)!= null %}
+                        <div class="alert alert-danger alert-dismissible alert-cerrar" role="alert" id="form-alert-error" data-dismiss="alert" >
+                            <div style="float: left;"><span class="glyphicon glyphicon-chevron-left"></span></div>
+                            {{ form_errors(form.password.first) }}
+                        </div>
+                    {% else %}{{ form_errors(form.password.first) }}{% endif %}
+                    {{ form_widget(form.password.first) }}
+                </div>
+                {{ form_row(form.password.second) }}
+                <div>
+                    {{ form_label(form.email) }}
+                    {% if form_errors(form.email)!= null %}
+                        <div class="alert alert-danger alert-dismissible alert-cerrar" role="alert" id="form-alert-error" data-dismiss="alert" >
+                            <div style="float: left;"><span class="glyphicon glyphicon-chevron-left"></span></div>
+                            {{ form_errors(form.email) }}
+                        </div>
+                    {% else %}{{ form_errors(form.email) }}{% endif %}
+                    {{ form_widget(form.email) }}
+                </div>
+                {#{{ form_widget(form) }}#}
+                <div>
+                    <label for="acuerdos_seguridadbundle_user[isActive]">Activo</label>
+                    <div class="switch round">
+                        {{ form_widget(form.isActive) }}
+                        {{ form_label(form.isActive) }}
+                    </div>
+                    {{ form_errors(form.isActive) }}
+                </div>
+            </div>
+            <div class="grp-input-row-two">
+                {#{{ form_row(form.roles) }}#}
+                {{ form_label(form.roles) }}
+                {{ form_errors(form.roles) }}
+                {{ form_widget(form.roles) }}
+            </div>
+        </div>
+        <div class="form-actions">
+            <input type="submit" class="btn btn-primary" value="Aceptar" />
+            <a class="btn btn-default" href="{{ path('users') }}">Regresar al listado</a>
+        </div>
+        {{ form_end(form) }}
+    </div>
+
+</div>
+
+{% endblock %}

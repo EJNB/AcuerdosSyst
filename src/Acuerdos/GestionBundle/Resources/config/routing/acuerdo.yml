@@ -1,0 +1,33 @@
+acuerdo:
+    path:     /
+    defaults: { _controller: "AcuerdosGestionBundle:Acuerdo:index" }
+
+acuerdo_show:
+    path:     /{id}/show
+    defaults: { _controller: "AcuerdosGestionBundle:Acuerdo:show" }
+
+acuerdo_new:
+    path:     /new
+    defaults: { _controller: "AcuerdosGestionBundle:Acuerdo:new" }
+
+acuerdo_create:
+    path:     /create
+    defaults: { _controller: "AcuerdosGestionBundle:Acuerdo:create" }
+    requirements: { _method: post }
+
+acuerdo_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AcuerdosGestionBundle:Acuerdo:edit" }
+
+acuerdo_update:
+    path:     /{id}/update
+    defaults: { _controller: "AcuerdosGestionBundle:Acuerdo:update" }
+    requirements: { _method: post|put }
+
+acuerdo_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AcuerdosGestionBundle:Acuerdo:delete" }
+
+acuerdo_edit_fecha_cump_real:
+    path:     /{id}/edit_fecha
+    defaults: { _controller: "AcuerdosGestionBundle:Acuerdo:editCumpReal" }

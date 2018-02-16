@@ -1,0 +1,70 @@
+{% extends '::layout-admin.html.twig' %}
+
+{% block content %}
+
+    <div class="panel panel-default">
+        <div class="panel-heading">
+            <h3 class="panel-title">Editar usuario</h3>
+        </div>
+        <div class="panel-body">
+            {#{{ form(form) }}#}
+            {{ form_start(edit_form) }}
+            <div class="grp-input-two-rows">
+                <div class="grp-input-row-one">
+                    <div>
+                        {{ form_label(edit_form.name) }}
+                        {% if form_errors(edit_form.name)!= null %}
+                            <div class="alert alert-danger alert-dismissible alert-cerrar" role="alert" id="form-alert-error" data-dismiss="alert" >
+                                <div style="float: left;"><span class="glyphicon glyphicon-chevron-left"></span></div>
+                                {{ form_errors(edit_form.name) }}
+                            </div>
+                        {% else %}{{ form_errors(edit_form.name) }}{% endif %}
+                        {{ form_widget(edit_form.name) }}
+                    </div>
+                    <div>
+                        {{ form_label(edit_form.username) }}
+                        {% if form_errors(edit_form.username)!= null %}
+                            <div class="alert alert-danger alert-dismissible alert-cerrar" role="alert" id="form-alert-error" data-dismiss="alert" >
+                                <div style="float: left;"><span class="glyphicon glyphicon-chevron-left"></span></div>
+                                {{ form_errors(edit_form.username) }}
+                            </div>
+                        {% else %}{{ form_errors(edit_form.username) }}{% endif %}
+                        {{ form_widget(edit_form.username) }}
+                    </div>
+                     <div>
+                        {{ form_label(edit_form.email) }}
+                        {% if form_errors(edit_form.email)!= null %}
+                            <div class="alert alert-danger alert-dismissible alert-cerrar" role="alert" id="form-alert-error" data-dismiss="alert" >
+                                <div style="float: left;"><span class="glyphicon glyphicon-chevron-left"></span></div>
+                                {{ form_errors(edit_form.email) }}
+                            </div>
+                        {% else %}{{ form_errors(edit_form.email) }}{% endif %}
+                        {{ form_widget(edit_form.email) }}
+                    </div>
+                    <div>
+                        <label for="acuerdos_seguridadbundle_user[isActive]">Activo</label>
+                        <div class="switch round">
+                            {{ form_widget(edit_form.isActive) }}
+                            {{ form_label(edit_form.isActive) }}
+                        </div>
+                        {{ form_errors(edit_form.isActive) }}
+                    </div>
+                </div>
+                <div class="grp-input-row-two">
+                    {#{{ form_row(edit_form.roles) }}#}
+                    {{ form_label(edit_form.roles) }}
+                    {{ form_errors(edit_form.roles) }}
+                    {{ form_widget(edit_form.roles) }}
+                </div>
+            </div>
+            <div class="form-actions">
+                <input type="submit" class="btn btn-primary" value="Aceptar" />
+                <a class="btn btn-default" href="{{ path('users') }}">Regresar al listado</a>
+            </div>
+            {{ form_end(edit_form) }}
+        </div>
+
+    </div>
+
+{% endblock %}
+

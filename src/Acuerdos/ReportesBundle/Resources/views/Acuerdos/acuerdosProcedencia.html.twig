@@ -1,0 +1,195 @@
+{% extends '::layout-report.html.twig' %}
+
+{% block content %}
+
+    <div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title" style="display: inline">Procedencia: </h3>
+        <select id="select-proc" data-url="{{ path('acuerdos_procedencia', { 'idprocedencia': 'pidprocedencia' } ) }}">
+            {% for procedencia in procedencias %}
+                <option value="{{ procedencia.id }}" {% if procedencia.id == procedencia_select.id %} selected="selected" {% endif %}>{{ procedencia.procedencia }}</option>
+            {% endfor %}
+        </select>
+    </div>
+    <div style="height: 10px" class="panel-heading">
+            <span id="label-filtro" class="label label-info">
+                <span id="sign-plus" class="glyphicon glyphicon-plus"></span>
+                <span id="sign-minus" class="glyphicon glyphicon-minus"></span>
+                Filtros:
+            </span>
+    </div>
+    <div class="panel-heading" id="panel-filtro">
+        <form method="post" id="form-report-find" name="form-report-find" action="{{ path('acuerdos_procedencia', { 'idprocedencia': procedencia_select.id }) }}">
+            <table  id="table-find" style="margin-top: -10px">
+            <tr>
+                <td></td>
+                <td></td>
+                <td colspan="3" style="text-align: center">Fecha indicada:</td>
+                <td colspan="3" style="text-align: center">Fecha Real:</td>
+                <td></td>
+            </tr>
+            <tr>
+                    <td style="width: 15.5%">
+                        <input type="text" placeholder="Buscar..." id="text-find" name="text-find">
+                    </td>
+                    <td style="width: 15.5%">
+                        <select id="select-state" name="select-state">
+                            <optgroup label="Estado">Estado</optgroup>
+                            <option style="display: none" value="" selected="selected">Estado</option>
+                            <option value="">Todos</option>
+                            <option value="Pendiente">Pendiente</option>
+                            <option value="Cumplido">Cumplido</option>
+                            <option value="Incumplido">Incumplido</option>
+                            <option value="En_proceso">En proceso</option>
+                            <option value="Permanente">Permanente</option>
+                            <option value="Sin_efecto">Sin efecto</option>
+                        </select>
+                    </td>
+                    <td style="width: 1.5%"></td>
+                    <td style="width: 15.5%">
+                        <div class='col-sm-6'>
+                            <input type='text' id='ind-date-start-find' placeholder="Inicio" name="ind-date-start-find"/>
+                        </div>
+                    </td>
+
+                    <td style="width: 15.5%">
+                        <div class='col-sm-6'>
+                            <input type="text" placeholder="Fin" id="ind-date-end-find" name="ind-date-end-find">
+                        </div>
+                    </td>
+                    <td style="width: 1.5%"></td>
+                    <td style="width: 15.5%">
+                        <div class='col-sm-6'>
+                            <input type="text" placeholder="Inicio" id="real-date-start-find" name="real-date-start-find">
+                        </div>
+                    </td>
+                    <td style="width: 15.5%">
+                        <div class='col-sm-6'>
+                            <input type="text" placeholder="Fin" id="real-date-end-find" name="real-date-end-find">
+                        </div>
+                    </td>
+                    <td style="width: 4%">
+                                <span id="find-btn" class="btn btn-primary">
+                                    <span class="glyphicon glyphicon-search"></span>
+                                </span>
+                    </td>
+            </tr>
+        </table>
+        </form>
+    </div>
+
+    <div class="panel-body" id="listado-reporte-acuerdo">
+        <form name="form-group-action" method="post" id="form-group-action">
+            <table class="table table-striped table-hover table-condensed table-bordered" id="tabla-acuerdos-procedencia">
+            <thead>
+            <tr style="background-color: #dbdbdb">
+                <th style="width: 2%"><input type="checkbox" id="select-all" value="0"></th>
+                <th style="width: 4%">
+                    {#Id#}
+                    {% include "AcuerdosReportesBundle:Default:order-link.html.twig" with { url:'acuerdos_procedencia', id_procedencia: procedencia_select.id, column_name:'id', caption:'Id' } %}
+                </th>
+                <th style="width: 15%">
+                    {% include "AcuerdosReportesBundle:Default:order-link.html.twig" with { url:'acuerdos_procedencia', id_procedencia: procedencia_select.id, column_name:'descripcion', caption:'Descripcion' } %}
+                </th>
+                <th style="width: 9%">
+                    {% include "AcuerdosReportesBundle:Default:order-link.html.twig" with { url:'acuerdos_procedencia', id_procedencia: procedencia_select.id, column_name:'fechaCumplimientoIndicada', caption:'C. Indicado' } %}
+                </th>
+                <th style="width: 7%">
+                    {% include "AcuerdosReportesBundle:Default:order-link.html.twig" with { url:'acuerdos_procedencia', id_procedencia: procedencia_select.id, column_name:'fechaCumplimientoReal', caption:'C. Real' } %}
+                </th>
+                <th style="width: 11%">Seguimiento</th>
+                <th style="width: 10%">Observaciones</th>
+                <th style="width: 7%">Estado</th>
+                <th style="width: 11%">Autor</th>
+                <th style="width: 12%">Responsables</th>
+                <th style="width: 12%">Ejecutores</th>
+                {#<th style="width: 6%"></th>#}
+            </tr>
+            </thead>
+            <tbody>
+                {% for entity in entities %}
+                    <tr>
+                        <td style="text-align: center"><input type="checkbox" name="select-acuerdo[]" value="{{ entity.acuerdo.id }}" class="select-item"></td>
+                        <td>{{ entity.acuerdo.idAcuerdo }}</a></td>
+                        <td>{{ entity.acuerdo.descripcion}}</td>
+                        {#<td>{{ entity.acuerdo.descripcion|slice(0,70) }}...</td>#}
+                        <td style="text-align: center">{% if entity.acuerdo.fechaCumplimientoIndicada %}{{ entity.acuerdo.fechaCumplimientoIndicada|date('Y-m-d') }}{% endif %}</td>
+                        <td style="text-align: center">{% if entity.acuerdo.fechaCumplimientoReal %}{{ entity.acuerdo.fechaCumplimientoReal|date('Y-m-d') }}
+                            {% else %}
+                                <a class="link-fecha-cump-real link-tooltip" href="javascript:void(0);"
+                                   data-url = "{{ path('acuerdo_edit_fecha_cump_real', { 'id': entity.acuerdo.id }) }}"
+                                   data-toggle="modal" data-target="#modal-fecha-cump-real"
+                                   data-toggle="tooltip" data-placement="top" title="Agregar fecha"
+                                        >
+                                    <span class="glyphicon glyphicon-plus"></span>
+                                </a>
+                            {% endif %}</td>
+                        <td>{{ entity.acuerdo.accionesSeguimiento}}</td>
+                        <td>{{ entity.acuerdo.observaciones}}</td>
+                        <td>{{ entity.acuerdo.estado }}</td>
+                        <td>
+                            <table>
+                                {% for persona in entity.personas %}
+                                    {% if persona.tipo == 'Autor' %}
+                                        <tr><td>-{{ persona.idPersona.descripcion }}</td></tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                {% for persona in entity.personas %}
+                                    {% if persona.tipo == 'Responsable' %}
+                                        <tr><td>-{{ persona.idPersona.descripcion }}</td></tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </table>
+                        </td>
+                        <td>
+                            <table>
+                                {% for persona in entity.personas %}
+                                    {% if persona.tipo == 'Ejecutor' %}
+                                        <tr><td>-{{ persona.idPersona.descripcion }}</td></tr>
+                                    {% endif %}
+                                {% endfor %}
+                            </table>
+                        </td>
+                    </tr>
+                {% endfor %}
+                <input type="hidden" id="text-msg" name="text-msg">
+                <input type="hidden" id="text-idprocedencia" name="text-idprocedencia" value="{{ procedencia_select.id }}">
+                {% if entities|length != 0 %}
+                    <tr>
+                        <td colspan="11">
+                            <div id="multiple-actions">
+                                <a id="send-button" class="btn-sm btn-primary" href="javascript:void(0);"
+                                   data-toggle="modal" data-target="#modal-acuerdo-enviar"
+                                   data-url="{{ path('acuerdos_msg_group') }}"
+                                        >
+                                    <span class="glyphicon glyphicon-envelope"></span>Notificar <span id="cant-send"></span>
+                                </a>
+
+                                <a id="print-button" class="btn-sm btn-primary" href="javascript:void(0);"
+                                   data-url="{{ path('acuerdos_pdf_group') }}">
+                                    <span class="glyphicon glyphicon-print"></span>Imprimir PDF <span id="cant-print"></span>
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                {% endif %}
+            </tbody>
+            <tfoot>
+            <tr>
+                <td colspan="11">
+                    <label id="admin-recordcount">Cantidad total de registros: {{ count }}</label>
+
+                </td>
+            </tr>
+            </tfoot>
+        </table>
+        </form>
+    </div>
+    </div>
+    {% include "AcuerdosReportesBundle:Default:modal-acuerdo.html.twig" %}
+
+{% endblock %}

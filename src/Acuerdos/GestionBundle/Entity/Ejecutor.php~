@@ -1,0 +1,58 @@
+<?php
+
+namespace Acuerdos\GestionBundle\Entity;
+
+use Doctrine\ORM\Mapping as ORM;
+
+/**
+ * Ejecutor
+ *
+ * @ORM\Table(name="ejecutor")
+ * @ORM\Entity
+ */
+class Ejecutor
+{
+    /**
+     * @var \Persona
+     *
+     * @ORM\Id
+     * @ORM\GeneratedValue(strategy="NONE")
+     * @ORM\OneToOne(targetEntity="Persona")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="ID", referencedColumnName="ID")
+     * })
+     */
+    private $id;
+
+    /**
+     * @var \Doctrine\Common\Collections\Collection
+     *
+     * @ORM\ManyToMany(targetEntity="Acuerdo", mappedBy="idEjecutor")
+     */
+    private $Acuerdos;
+
+
+
+    /**
+     * Set id
+     *
+     * @param \Acuerdos\GestionBundle\Entity\Persona $id
+     * @return Ejecutor
+     */
+    public function setId(\Acuerdos\GestionBundle\Entity\Persona $id)
+    {
+        $this->id = $id;
+
+        return $this;
+    }
+
+    /**
+     * Get id
+     *
+     * @return \Acuerdos\GestionBundle\Entity\Persona 
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+}

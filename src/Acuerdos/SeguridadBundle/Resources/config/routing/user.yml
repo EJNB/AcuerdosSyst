@@ -1,0 +1,37 @@
+users:
+    path:     /
+    defaults: { _controller: "AcuerdosSeguridadBundle:User:index" }
+
+users_show:
+    path:     /{id}/show
+    defaults: { _controller: "AcuerdosSeguridadBundle:User:show" }
+
+users_new:
+    path:     /new
+    defaults: { _controller: "AcuerdosSeguridadBundle:User:new" }
+
+users_create:
+    path:     /create
+    defaults: { _controller: "AcuerdosSeguridadBundle:User:create" }
+    requirements: { _method: post }
+
+users_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "AcuerdosSeguridadBundle:User:edit" }
+
+users_update:
+    path:     /{id}/update
+    defaults: { _controller: "AcuerdosSeguridadBundle:User:update" }
+    requirements: { _method: post|put }
+
+users_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "AcuerdosSeguridadBundle:User:delete" }
+
+users_changepass:
+    path:     /{id}/changepass
+    defaults: { _controller: "AcuerdosSeguridadBundle:User:changepass" }
+
+users_changepass_user:
+    path:     /changepassuser
+    defaults: { _controller: "AcuerdosSeguridadBundle:User:changepassUser" }

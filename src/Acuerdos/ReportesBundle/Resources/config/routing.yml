@@ -1,0 +1,23 @@
+acuerdos_reportes_homepage:
+    path:     /Acuerdos/index
+    defaults: { _controller: AcuerdosReportesBundle:Default:index }
+
+seleccionar_procedencia:
+    path: /Acuerdos/Procedencias
+    defaults: { _controller: AcuerdosReportesBundle:Acuerdos:seleccionProcedencias}
+
+acuerdos_msg_group:
+    path: /Acuerdos/Msg
+    defaults: { _controller: AcuerdosReportesBundle:Acuerdos:acuerdosMsg}
+
+acuerdos_pdf_group:
+    path: /Acuerdos/Pdf
+    defaults: { _controller: AcuerdosReportesBundle:Acuerdos:acuerdosPdf}
+
+acuerdos_procedencia:
+    path: /Acuerdos/Procedencias/{idprocedencia}
+    defaults: { _controller: AcuerdosReportesBundle:Acuerdos:acuerdosProcedencia}
+
+acuerdos_persona:
+    path: /Acuerdos/Personas
+    defaults: { _controller: AcuerdosReportesBundle:Acuerdos:acuerdosPersona}

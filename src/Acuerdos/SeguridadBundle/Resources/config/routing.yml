@@ -1,0 +1,21 @@
+AcuerdosSeguridadBundle_users:
+    resource: "@AcuerdosSeguridadBundle/Resources/config/routing/user.yml"
+    prefix:   /users
+
+AcuerdosSeguridadBundle_roles:
+    resource: "@AcuerdosSeguridadBundle/Resources/config/routing/role.yml"
+    prefix:   /roles
+
+acuerdos_seguridad_login:
+    path: /login
+    defaults: { _controller: AcuerdosSeguridadBundle:Security:login }
+
+acuerdos_seguridad_login_check:
+    path: /login_check
+
+acuerdos_seguridad_logout:
+    path: /logout
+
+acuerdos_seguridad_homepage:
+    path:     /
+    defaults: { _controller: AcuerdosGestionBundle:Default:index }
